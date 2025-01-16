@@ -10,10 +10,11 @@ import { TopEventsChart } from '@/components/top-events-chart'
 import { DatePickerWithRange } from '@/components/date-range-picker'
 import { Button } from '@/components/ui/button'
 import { Download } from 'lucide-react'
+import { DateRange } from 'react-day-picker'
 
 export default function RelatoriosPage() {
-  const [date, setDate] = useState<{ from: Date; to: Date }>()
-
+  const [date, setDate] = useState<DateRange | undefined>(undefined);
+  
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
