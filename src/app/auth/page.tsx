@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
-// Definindo os tipos com Zod
 const loginSchema = z.object({
   email: z.string().email('Email inválido'),
   password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres')
@@ -31,7 +30,6 @@ export default function LoginPage() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
-    // Limpa o erro do campo quando o usuário começa a digitar
     setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
@@ -40,13 +38,10 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      // Valida os dados do formulário
       loginSchema.parse(formData)
       
-      // Aqui você adicionaria a lógica de autenticação
-      await new Promise(resolve => setTimeout(resolve, 1500)) // Simulando uma chamada API
+      await new Promise(resolve => setTimeout(resolve, 1500))
       
-      // Redireciona para o dashboard após o login
       router.push('/dashboard')
     } catch (error) {
       if (error instanceof z.ZodError) {
