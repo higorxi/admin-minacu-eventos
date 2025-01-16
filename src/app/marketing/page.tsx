@@ -136,7 +136,7 @@ const MarketingDashboard = () => {
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      <div className="flex-none p-6 bg-white z-10">
+      <div className="flex-none p-6 z-10">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Marketing</h1>
           <div className="flex gap-4">
@@ -155,7 +155,7 @@ const MarketingDashboard = () => {
 
       <div className="flex-grow flex overflow-hidden">
         {/* Coluna da esquerda (75% de largura) */}
-        <div className="w-3/4 p-6 overflow-y-auto">
+        <div className="w-4/6 p-6 overflow-y-auto scrollbar-hide">
           {/* Lista de Usuários */}
           <Card className="mb-6">
             <CardHeader>
@@ -281,7 +281,7 @@ const MarketingDashboard = () => {
         </div>
 
         {/* Coluna da direita (25% de largura) */}
-        <div className="w-1/4 p-6 overflow-y-auto bg-gray-50">
+        <div className="w-2/6 p-6 overflow-y-auto scrollbar-hide">
           {/* Preview e Envio de Mensagens */}
           <Card className="sticky top-6">
             <CardHeader>
