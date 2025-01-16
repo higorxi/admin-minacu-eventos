@@ -19,7 +19,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from './mode-toggle'
 
-
 const menuItems = [
   { icon: Home, label: 'Dashboard', href: '/' },
   { icon: Calendar, label: 'Eventos', href: '/eventos' },
@@ -48,6 +47,10 @@ const CompanyInfo = () => (
 
 export function AppSidebar() {
   const pathname = usePathname()
+
+  if (pathname === '/auth') {
+    return null
+  }
 
   return (
     <Sidebar>
