@@ -56,7 +56,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader>
         <div className="flex items-center justify-between p-4">
-          <h2 className="text-lg font-semibold">Gerenciamento</h2>
+          <h2 className="text-lg font-semibold">Minaçu Eventos</h2>
           <ModeToggle />
         </div>
       </SidebarHeader>
