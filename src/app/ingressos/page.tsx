@@ -72,9 +72,9 @@ export default function IngressosPage() {
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <div className="flex h-16 items-center justify-between px-4">
-          <div className="flex items-center">
-            <h1 className="ml-4 text-xl font-semibold">Ingressos</h1>
+        <div className="flex items-center justify-between ">
+          <div className="flex items-center justify-between space-y-2">
+            <h1 className="text-3xl font-bold tracking-tight">Ingressos</h1>
           </div>
           <Button onClick={() => setIsNewTicketModalOpen(true)}>Novo Ingresso</Button>
         </div>

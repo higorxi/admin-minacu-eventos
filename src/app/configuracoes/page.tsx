@@ -7,8 +7,8 @@ export default function ConfiguracoesPage() {
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <div className="flex h-16 items-center px-4">
-          <h1 className="ml-4 text-xl font-semibold">Configurações</h1>
+        <div className="flex items-center justify-between space-y-2">
+          <h2 className="text-3xl font-bold tracking-tight">Configurações</h2>
         </div>
         <div className="p-4 space-y-6">
           <div className="space-y-2">

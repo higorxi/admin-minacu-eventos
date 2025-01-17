@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Table,
@@ -31,14 +31,20 @@ const events = [
 ];
 
 export default function EventosPage() {
-   const [isNewEventModalOpen, setIsNewEventModalOpen] = useState<boolean>(false)
-   
+  const [isNewEventModalOpen, setIsNewEventModalOpen] =
+    useState<boolean>(false);
+
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <div className="flex h-16 items-center justify-between px-4">
-          <h1 className="ml-4 text-xl font-semibold">Eventos</h1>
-          <Button onClick={() => setIsNewEventModalOpen(true)}>Novo Evento</Button>
+        <div className="flex items-center justify-between ">
+          <div className="flex items-center justify-between space-y-2">
+            <h1 className="text-3xl font-bold tracking-tight">Eventos</h1>
+          </div>
+
+          <Button onClick={() => setIsNewEventModalOpen(true)}>
+            Novo Evento
+          </Button>
         </div>
         <div className="p-4">
           <Table>
@@ -72,7 +78,6 @@ export default function EventosPage() {
       <NewEventModal
         isOpen={isNewEventModalOpen}
         onClose={() => setIsNewEventModalOpen(false)}
-
       />
     </div>
   );

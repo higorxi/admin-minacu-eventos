@@ -118,7 +118,6 @@ const MarketingDashboard = () => {
       setSelectedUsers([]);
     }
   };
-  
 
   const buscarAttachment = async () => {
     try {
@@ -136,9 +135,9 @@ const MarketingDashboard = () => {
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      <div className="flex-none p-6 z-10">
+      <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold">Marketing</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Marketing</h1>
           <div className="flex gap-4">
             <Input
               placeholder="Buscar usuários..."
