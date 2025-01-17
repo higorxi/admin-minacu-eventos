@@ -99,7 +99,6 @@ export default function IngressosPage() {
                 <TableHead>Tipo</TableHead>
                 <TableHead>Preço</TableHead>
                 <TableHead>Disponíveis</TableHead>
-                <TableHead>Métodos de Pagamento</TableHead>
                 <TableHead>Ações</TableHead>
               </TableRow>
             </TableHeader>
@@ -110,13 +109,6 @@ export default function IngressosPage() {
                   <TableCell>{ticket.type}</TableCell>
                   <TableCell>R$ {ticket.price.toFixed(2)}</TableCell>
                   <TableCell>{ticket.available}</TableCell>
-                  <TableCell>
-                    {Object.entries(ticket.acceptedPaymentMethods)
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                      .filter(([_, isAccepted]) => isAccepted)
-                      .map(([method]) => method)
-                      .join(', ')}
-                  </TableCell>
                   <TableCell>
                     <Button variant="outline" size="sm" onClick={() => setEditingTicket(ticket)}>Editar</Button>
                   </TableCell>

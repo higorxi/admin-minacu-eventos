@@ -24,7 +24,7 @@ interface NewTicketModalProps {
 
 // Tipo para o estado do ingresso
 interface Ticket {
-  eventId: number | ''
+  eventId: number 
   type: string
   price: number
   available: number
@@ -38,7 +38,7 @@ interface Ticket {
 
 export function NewTicketModal({ isOpen, onClose, onAddTicket, events }: NewTicketModalProps) {
   const initialTicketState: Ticket = {
-    eventId: '',
+    eventId: 0,
     type: '',
     price: 0,
     available: 0,
@@ -83,7 +83,7 @@ export function NewTicketModal({ isOpen, onClose, onAddTicket, events }: NewTick
   const handleSubmit = () => {
     onAddTicket({
       ...newTicket,
-      eventId: parseInt(newTicket.eventId as string, 10),
+      eventId: newTicket.eventId,
       price: newTicket.price,
       available: newTicket.available,
     })
@@ -92,7 +92,7 @@ export function NewTicketModal({ isOpen, onClose, onAddTicket, events }: NewTick
     setNewTicket(initialTicketState)
   }
 
-  const selectedEvent = events.find(event => event.id === parseInt(newTicket.eventId as string, 10))
+  const selectedEvent = events.find(event => event.id === newTicket.eventId)
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
