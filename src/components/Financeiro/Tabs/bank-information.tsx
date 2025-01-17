@@ -1,20 +1,18 @@
 import { Button } from "@/components/ui/button";
-
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { BankAccount } from "@/app/financeiro/page";
 
 interface BankKeysSectionProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
   onAddKey: (newKey: BankAccount) => void;
 }
 
 export default function BankKeysSection({ onAddKey, isOpen, onClose }: BankKeysSectionProps) {
-  const [keyType, setKeyType] = useState<string>("");
+  const [keyType, setKeyType] = useState<"cpf" | "email" | "telefone" | "aleatoria" | undefined>(undefined);
   const [keyValue, setKeyValue] = useState<string>("");
   const [isFormValid, setIsFormValid] = useState<boolean>(true);
 
@@ -31,15 +29,18 @@ export default function BankKeysSection({ onAddKey, isOpen, onClose }: BankKeysS
     const newKey: BankAccount = {
       id: Math.random().toString(), // Gerando um id aleatório para a chave
       key: keyValue,
-      keyType: keyType,
+      keyType: keyType, // Agora keyType pode ser "cpf", "email", etc.
+      type: "pix", // Definindo explicitamente o tipo como "pix"
       status: "active",
+      ownerName: "", // Adicionei um valor vazio para 'ownerName'
+      createdAt: '', // Adicionei um valor vazio para 'createdAtts'
     };
 
     // Passa a nova chave para o componente pai
     onAddKey(newKey);
 
     // Limpar campos após adicionar
-    setKeyType("");
+    setKeyType(undefined);
     setKeyValue("");
     setIsFormValid(true);
     onClose();
@@ -55,7 +56,7 @@ export default function BankKeysSection({ onAddKey, isOpen, onClose }: BankKeysS
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Campo Tipo de Chave */}
-          <Select value={keyType} onValueChange={setKeyType}>
+          <Select value={keyType} onValueChange={(value) => setKeyType(value as "cpf" | "email" | "telefone" | "aleatoria")}>
             <SelectTrigger>
               <SelectValue placeholder="Tipo de Chave PIX" />
             </SelectTrigger>
