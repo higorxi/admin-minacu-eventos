@@ -105,7 +105,7 @@ export default function WithdrawalsSection() {
   };
 
   return (
-    <Card className="bg-white shadow-md">
+    <Card className="shadow-md">
       <CardHeader className="border-b border-gray-100">
         <CardTitle className="flex items-center gap-2 text-gray-800">
           <ArrowDownCircle className="w-5 h-5 text-blue-600" />
