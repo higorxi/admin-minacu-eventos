@@ -1,6 +1,6 @@
 "use client"
 
-import { Home, Calendar, Ticket, Settings, CreditCard, BarChart, LogOut, Mail } from 'lucide-react'
+import { Home, Calendar, Ticket, Settings, CreditCard, BarChart, LogOut, Mail, CircleDollarSign } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -23,14 +23,15 @@ const menuItems = [
   { icon: Home, label: 'Dashboard', href: '/' },
   { icon: Calendar, label: 'Eventos', href: '/eventos' },
   { icon: Ticket, label: 'Ingressos', href: '/ingressos' },
+  { icon: CreditCard, label: 'Pagamentos', href: '/pagamentos' },
+  { icon: CircleDollarSign, label: 'Financeiro', href: '/financeiro' },
   { icon: BarChart, label: 'Relatórios', href: '/relatorios' },
   { icon: Mail, label: 'Marketing', href: '/marketing' },
   { icon: Settings, label: 'Configurações', href: '/configuracoes' },
-  { icon: CreditCard, label: 'Pagamentos', href: '/pagamentos' },
 ]
 
 const CompanyInfo = () => (
-  <div className="mt-auto p-4 bg-secondary rounded-lg flex items-center space-x-4">
+  <div className="mt-auto p-4 bg-secondary rounded-lg flex items-center gap-4">
     <Avatar>
       <AvatarImage src="/company-logo.png" alt="Logo da Empresa" />
       <AvatarFallback>EC</AvatarFallback>
@@ -39,11 +40,14 @@ const CompanyInfo = () => (
       <p className="text-sm font-medium">Empresa de Eventos</p>
       <p className="text-xs text-muted-foreground">contato@empresa.com</p>
     </div>
-    <Button variant="ghost" size="icon">
-      <LogOut className="h-4 w-4" />
-    </Button>
+    <Link href="/auth" className="rounded-lg mr-4">
+      <Button variant="ghost" size="icon">
+        <LogOut className="h-4 w-4" />
+      </Button>
+    </Link>
   </div>
 )
+
 
 export function AppSidebar() {
   const pathname = usePathname()

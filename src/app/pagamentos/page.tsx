@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Table,
@@ -7,14 +10,67 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Payment, PaymentDetailsModal } from '@/components/payment-details-modal'
 
-const payments = [
-  { id: 1, date: '2023-07-01', amount: 1999.00, status: 'Concluído' },
-  { id: 2, date: '2023-07-05', amount: 39.00, status: 'Processando' },
-  { id: 3, date: '2023-07-10', amount: 299.00, status: 'Concluído' },
-]
+const payments: Payment[] = [
+  {
+    details: {
+      buyer: 'João Silva',
+      email: 'joao.silva@email.com',
+      event: 'Show de Rock',
+      date: '2023-07-01',
+      venue: 'Estádio Municipal',
+      ticket: 'Pista VIP',
+      quantity: 1,
+      sector: 'VIP',
+      paymentMethod: 'Cartão de Crédito',
+    },
+    amount: 1999.0,
+    status: 'Aprovado',
+  },
+  {
+    details: {
+      buyer: 'Maria Oliveira',
+      email: 'maria.oliveira@email.com',
+      event: 'Teatro Infantil',
+      date: '2023-07-05',
+      venue: 'Teatro Central',
+      ticket: 'Plateia',
+      quantity: 2,
+      sector: 'Plateia Central',
+      paymentMethod: 'Boleto',
+    },
+    amount: 39.0,
+    status: 'Pendente',
+  },
+  {
+    details: {
+      buyer: 'Carlos Souza',
+      email: 'carlos.souza@email.com',
+      event: 'Festa Universitária',
+      date: '2023-07-10',
+      venue: 'Espaço Universitário',
+      ticket: 'Camarote Open Bar',
+      quantity: 1,
+      sector: 'Camarote',
+      paymentMethod: 'PIX',
+    },
+    amount: 299.0,
+    status: 'Aprovado',
+  },
+];
 
 export default function PagamentosPage() {
+  const [selectedPayment, setSelectedPayment] = useState<Payment | null>(null);
+
+  const handleShowDetails = (payment: Payment) => {
+    setSelectedPayment(payment);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedPayment(null);
+  };
+
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -35,13 +91,19 @@ export default function PagamentosPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {payments.map((payment) => (
-                <TableRow key={payment.id}>
-                  <TableCell>{payment.date}</TableCell>
+              {payments.map((payment, index) => (
+                <TableRow key={index}>
+                  <TableCell>{payment.details.date}</TableCell>
                   <TableCell>R$ {payment.amount.toFixed(2)}</TableCell>
                   <TableCell>{payment.status}</TableCell>
                   <TableCell>
-                    <Button variant="outline" size="sm">Detalhes</Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleShowDetails(payment)}
+                    >
+                      Detalhes
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -49,7 +111,12 @@ export default function PagamentosPage() {
           </Table>
         </div>
       </div>
+      {selectedPayment && (
+        <PaymentDetailsModal
+          payment={selectedPayment}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
-  )
+  );
 }
-

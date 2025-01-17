@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Table,
   TableBody,
@@ -5,22 +7,38 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { NewEventModal } from "@/components/new-event-moda";
+import { useState } from "react";
 
 const events = [
-  { id: 1, name: 'Festa de Aniversário', date: '2023-07-15', tickets: 50, sold: 30 },
-  { id: 2, name: 'Conferência Tech', date: '2023-08-01', tickets: 200, sold: 150 },
-  { id: 3, name: 'Show de Rock', date: '2023-08-15', tickets: 1000, sold: 800 },
-]
+  {
+    id: 1,
+    name: "Festa de Aniversário",
+    date: "2023-07-15",
+    tickets: 50,
+    sold: 30,
+  },
+  {
+    id: 2,
+    name: "Conferência Tech",
+    date: "2023-08-01",
+    tickets: 200,
+    sold: 150,
+  },
+  { id: 3, name: "Show de Rock", date: "2023-08-15", tickets: 1000, sold: 800 },
+];
 
 export default function EventosPage() {
+   const [isNewEventModalOpen, setIsNewEventModalOpen] = useState<boolean>(false)
+   
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex h-16 items-center justify-between px-4">
           <h1 className="ml-4 text-xl font-semibold">Eventos</h1>
-          <Button>Novo Evento</Button>
+          <Button onClick={() => setIsNewEventModalOpen(true)}>Novo Evento</Button>
         </div>
         <div className="p-4">
           <Table>
@@ -41,7 +59,9 @@ export default function EventosPage() {
                   <TableCell>{event.tickets}</TableCell>
                   <TableCell>{event.sold}</TableCell>
                   <TableCell>
-                    <Button variant="outline" size="sm">Editar</Button>
+                    <Button variant="outline" size="sm">
+                      Editar
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -49,7 +69,11 @@ export default function EventosPage() {
           </Table>
         </div>
       </div>
-    </div>
-  )
-}
+      <NewEventModal
+        isOpen={isNewEventModalOpen}
+        onClose={() => setIsNewEventModalOpen(false)}
 
+      />
+    </div>
+  );
+}
